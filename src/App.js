@@ -1,28 +1,37 @@
-import { Component } from 'react';
-import './App.css';
-import  Person from './components/Person';
+import "./App.css";
+import { Component } from "react";
+import Book from "./components/Book";
 
 // functional component
-// function App() {
-//   return (
-//     <div className='App'>
-//       <h1>Hello</h1>
-//       <Person />
-//     </div>
-//   );
-// }
-
-// class component
 class App extends Component {
+  state = {
+    books: [
+      { bookName: "1984", author: "George Orwell" },
+      { bookName: "The Da Vinci Code", author: "Dan Brownl" },
+      { bookName: "The Alchemist", author: "Paolo Cohelho" },
+      { bookName: "Sherlock Holmes", author: "Arthur Conan Dowel" },
+    ],
+  };
   render() {
     return (
-      <div className='App'>
-        <h1>Hello React</h1>
-        <Person>Some Info</Person>
-        <Person name="Sohel"/>
-        <Person name="Samir"/>
-        <Person name="Osama"/>
-        <Person name="Omar"/>
+      <div className="App">
+        <h1>Book List</h1>
+        <Book
+          name={this.state.books[0].bookName}
+          writer={this.state.books[0].author}
+        />
+        <Book
+          name={this.state.books[1].bookName}
+          writer={this.state.books[1].author}
+        />
+        <Book
+          name={this.state.books[2].bookName}
+          writer={this.state.books[2].author}
+        />
+        <Book
+          name={this.state.books[3].bookName}
+          writer={this.state.books[3].author}
+        />
       </div>
     );
   }
