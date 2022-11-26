@@ -17,8 +17,12 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <h1>Hello</h1>
-        <Person />
+        <h1>Hello React</h1>
+        <Person>Some Info</Person>
+        <Person name="Sohel"/>
+        <Person name="Samir"/>
+        <Person name="Osama"/>
+        <Person name="Omar"/>
       </div>
     );
   }
