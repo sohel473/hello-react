@@ -23,13 +23,30 @@ class App extends Component {
       ],
     });
   };
+
+  changeInputState = (e) => {
+    this.setState({
+      books: [
+        { bookName: e.target.value, author: "George Orwell 2" },
+        { bookName: "The Da Vinci Code 2", author: "Dan Brownl 2" },
+        { bookName: "The Alchemist 2", author: "Paolo Cohelho 2" },
+        { bookName: "Sherlock Holmes 2", author: "Arthur Conan Dowel 2" },
+      ],
+    });
+  };
   render() {
     return (
       <div className="App">
         <h1>Book List</h1>
+
         <button onClick={() => this.changeState("Ninteen Eighty Four")}>
           Change State
         </button>
+
+        <br />
+
+        <input type="text" onChange={this.changeInputState} />
+
         <Book
           name={this.state.books[0].bookName}
           writer={this.state.books[0].author}
@@ -45,7 +62,7 @@ class App extends Component {
         <Book
           name={this.state.books[3].bookName}
           writer={this.state.books[3].author}
-          changeState={this.changeState.bind(this, "Ninteen 84")}
+          change={this.changeState.bind(this, "Ninteen 84")}
         />
       </div>
     );
