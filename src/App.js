@@ -12,10 +12,22 @@ class App extends Component {
       { bookName: "Sherlock Holmes", author: "Arthur Conan Dowel" },
     ],
   };
+
+  changeState = () => {
+    this.setState({
+      books: [
+        { bookName: "1984 2", author: "George Orwell 2" },
+        { bookName: "The Da Vinci Code 2", author: "Dan Brownl 2" },
+        { bookName: "The Alchemist 2", author: "Paolo Cohelho 2" },
+        { bookName: "Sherlock Holmes 2", author: "Arthur Conan Dowel 2" },
+      ],
+    });
+  };
   render() {
     return (
       <div className="App">
         <h1>Book List</h1>
+        <button onClick={this.changeState}> Change State</button>
         <Book
           name={this.state.books[0].bookName}
           writer={this.state.books[0].author}
