@@ -1,4 +1,4 @@
-import "../styles/Book.css";
+import "../../styles/Book.css";
 
 const Book = (props) => {
   return (
