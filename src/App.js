@@ -11,6 +11,7 @@ class App extends Component {
       { bookName: "The Alchemist", author: "Paolo Cohelho" },
       { bookName: "Sherlock Holmes", author: "Arthur Conan Dowel" },
     ],
+    showBooks: true,
   };
 
   deleteBook = (index) => {
@@ -31,6 +32,12 @@ class App extends Component {
     });
   };
 
+  toggleBooks = () => {
+    this.setState({
+      showBooks: !this.state.showBooks,
+    });
+  };
+
   render() {
     const style = {
       border: "1px solid red",
@@ -39,21 +46,25 @@ class App extends Component {
       color: "white",
     };
 
-    const books = this.state.books.map((book, index) => (
-      <Book
-        key={index}
-        name={book.bookName}
-        writer={book.author}
-        delete={this.deleteBook.bind(this, index)}
-        // onChange={(e) => this.onBookChange(e, index)}
-        onChange={(e) => this.onBookChange(e, index)}
-      />
-    ));
+    let books = null;
+    if (this.state.showBooks) {
+      books = this.state.books.map((book, index) => (
+        <Book
+          key={index}
+          name={book.bookName}
+          writer={book.author}
+          delete={this.deleteBook.bind(this, index)}
+          // onChange={(e) => this.onBookChange(e, index)}
+          onChange={(e) => this.onBookChange(e, index)}
+        />
+      ));
+    }
 
     return (
       <div className="App">
         <h1 style={style}>Book List</h1>
-
+        <button onClick={this.toggleBooks}>Toggle Books</button>
+        {console.log(this.state.books.showBooks)}
         {books}
       </div>
     );
