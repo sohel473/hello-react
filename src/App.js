@@ -34,6 +34,7 @@ class App extends Component {
       ],
     });
   };
+
   render() {
     const style = {
       border: "1px solid red",
@@ -41,6 +42,11 @@ class App extends Component {
       backgroundColor: "black",
       color: "white",
     };
+
+    const books = this.state.books.map((book, index) => (
+      <Book key={index} name={book.bookName} writer={book.author} />
+    ));
+
     return (
       <div className="App">
         <h1 style={style}>Book List</h1>
@@ -53,23 +59,7 @@ class App extends Component {
 
         <input type="text" onChange={this.changeInputState} />
 
-        <Book
-          name={this.state.books[0].bookName}
-          writer={this.state.books[0].author}
-        />
-        <Book
-          name={this.state.books[1].bookName}
-          writer={this.state.books[1].author}
-        />
-        <Book
-          name={this.state.books[2].bookName}
-          writer={this.state.books[2].author}
-        />
-        <Book
-          name={this.state.books[3].bookName}
-          writer={this.state.books[3].author}
-          change={this.changeState.bind(this, "Ninteen 84")}
-        />
+        {books}
       </div>
     );
   }
