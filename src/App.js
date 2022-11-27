@@ -13,25 +13,11 @@ class App extends Component {
     ],
   };
 
-  changeState = (newBookName) => {
+  deleteBook = (index) => {
+    const books = [...this.state.books];
+    books.splice(index, 1);
     this.setState({
-      books: [
-        { bookName: newBookName, author: "George Orwell 2" },
-        { bookName: "The Da Vinci Code 2", author: "Dan Brownl 2" },
-        { bookName: "The Alchemist 2", author: "Paolo Cohelho 2" },
-        { bookName: "Sherlock Holmes 2", author: "Arthur Conan Dowel 2" },
-      ],
-    });
-  };
-
-  changeInputState = (e) => {
-    this.setState({
-      books: [
-        { bookName: e.target.value, author: "George Orwell 2" },
-        { bookName: "The Da Vinci Code 2", author: "Dan Brownl 2" },
-        { bookName: "The Alchemist 2", author: "Paolo Cohelho 2" },
-        { bookName: "Sherlock Holmes 2", author: "Arthur Conan Dowel 2" },
-      ],
+      books: books,
     });
   };
 
@@ -44,20 +30,17 @@ class App extends Component {
     };
 
     const books = this.state.books.map((book, index) => (
-      <Book key={index} name={book.bookName} writer={book.author} />
+      <Book
+        key={index}
+        name={book.bookName}
+        writer={book.author}
+        delete={this.deleteBook.bind(this, index)}
+      />
     ));
 
     return (
       <div className="App">
         <h1 style={style}>Book List</h1>
-
-        <button onClick={() => this.changeState("Ninteen Eighty Four")}>
-          Change State
-        </button>
-
-        <br />
-
-        <input type="text" onChange={this.changeInputState} />
 
         {books}
       </div>
