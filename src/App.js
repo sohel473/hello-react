@@ -21,6 +21,16 @@ class App extends Component {
     });
   };
 
+  onBookChange = (e, index) => {
+    const book = this.state.books[index];
+    book.bookName = e.target.value;
+    const books = [...this.state.books];
+    books[index] = book;
+    this.setState({
+      books: books,
+    });
+  };
+
   render() {
     const style = {
       border: "1px solid red",
@@ -35,6 +45,8 @@ class App extends Component {
         name={book.bookName}
         writer={book.author}
         delete={this.deleteBook.bind(this, index)}
+        // onChange={(e) => this.onBookChange(e, index)}
+        onChange={(e) => this.onBookChange(e, index)}
       />
     ));
 
