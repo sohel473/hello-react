@@ -2,11 +2,11 @@ import { Component } from "react";
 import bookList from "../assets/books";
 import BookList from "./lists/Booklist";
 import NewBook from "./representational/NewBook";
+import { Route } from "react-router-dom";
 
 class MainComponent extends Component {
   state = {
     books: bookList,
-    showBooks: true,
   };
 
   deleteBook = (index) => {
@@ -27,30 +27,14 @@ class MainComponent extends Component {
     });
   };
 
-  toggleBooks = () => {
-    this.setState({
-      showBooks: !this.state.showBooks,
-    });
-  };
-
   render() {
-    const style = {
-      border: "1px solid red",
-      borderRadius: "5px",
-      backgroundColor: "black",
-      color: "white",
-    };
-
-    let books = null;
-    if (this.state.showBooks) {
-      books = (
-        <BookList
-          books={this.state.books}
-          deleteBook={this.deleteBook}
-          changeBook={this.onBookChange}
-        />
-      );
-    }
+    const books = (
+      <BookList
+        books={this.state.books}
+        deleteBook={this.deleteBook}
+        changeBook={this.onBookChange}
+      />
+    );
 
     return (
       <div className="App">
@@ -60,16 +44,12 @@ class MainComponent extends Component {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/new">New Book</a>
+              <a href="/new-book">New Book</a>
             </li>
           </ul>
         </div>
-
-        <h1 style={style}>Book List</h1>
-        <button onClick={this.toggleBooks}>Toggle Books</button>
-        {/* {console.log(books)} */}
-        {books}
-        <NewBook />
+        <Route path="/" exact render={() => <h1>Home</h1>} />
+        <Route path="/new-book" render={() => <h1>New Book</h1>} />
       </div>
     );
   }
