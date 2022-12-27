@@ -1,7 +1,7 @@
 import { Component } from "react";
-import "../App.css";
 import bookList from "../assets/books";
 import BookList from "./lists/Booklist";
+import NewBook from "./representational/NewBook";
 
 class MainComponent extends Component {
   state = {
@@ -54,10 +54,22 @@ class MainComponent extends Component {
 
     return (
       <div className="App">
+        <div className="nav-bar">
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/new">New Book</a>
+            </li>
+          </ul>
+        </div>
+
         <h1 style={style}>Book List</h1>
         <button onClick={this.toggleBooks}>Toggle Books</button>
         {/* {console.log(books)} */}
         {books}
+        <NewBook />
       </div>
     );
   }
