@@ -1,13 +1,14 @@
 import "../../styles/Book.css";
+import { withRouter } from "react-router";
 
 const Book = (props) => {
+  // console.log(props);
   return (
-    <div className="Book">
-      <h3 onClick={props.delete}>Book: {props.name}</h3>
+    <div className="Book" onClick={props.selectedBook}>
+      <h3>Book: {props.name}</h3>
       <h4>Writer: {props.writer}</h4>
-      <input type="text" onChange={props.onChange} value={props.name} />
     </div>
   );
 };
 
-export default Book;
+export default withRouter(Book);

@@ -2,28 +2,20 @@ import { Component } from "react";
 import bookList from "../assets/books";
 import BookList from "./lists/Booklist";
 import NewBook from "./representational/NewBook";
+import BookDetails from "./representational/BookDetails";
 import { Route, NavLink } from "react-router-dom";
 
 class MainComponent extends Component {
   state = {
     books: bookList,
+    selectedBook: null,
   };
 
-  deleteBook = (index) => {
-    const books = [...this.state.books];
-    books.splice(index, 1);
+  selectedBookHandler = (bookId) => {
+    const book = this.state.books.filter((book) => book.id === bookId)[0];
+    // console.log(book);
     this.setState({
-      books: books,
-    });
-  };
-
-  onBookChange = (e, index) => {
-    const book = this.state.books[index];
-    book.bookName = e.target.value;
-    const books = [...this.state.books];
-    books[index] = book;
-    this.setState({
-      books: books,
+      selectedBook: book,
     });
   };
 
@@ -31,8 +23,7 @@ class MainComponent extends Component {
     const books = (
       <BookList
         books={this.state.books}
-        deleteBook={this.deleteBook}
-        changeBook={this.onBookChange}
+        selectedBook={this.selectedBookHandler}
       />
     );
 
@@ -52,6 +43,11 @@ class MainComponent extends Component {
         </nav>
         <Route path="/" exact render={() => books} />
         <Route path="/new-book" exact component={NewBook} />
+        <Route
+          path="/:id"
+          exact
+          render={() => <BookDetails book={this.state.selectedBook} />}
+        />
       </div>
     );
   }
